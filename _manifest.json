@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "id": "com.fsqhn.torrent-analyze",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "name": "麦麦验车",
   "description": "把磁力链或种子哈希丢给 whatslink.info，返回种子名称、类型、大小、文件数与截图卡片。支持指令、LLM 工具调用，以及引用/合并转发里的磁链自动识别。",
   "author": {
@@ -47,8 +47,9 @@
   "plugin_type": "tool",
   "display": {
     "icon": {
-      "type": "lucide",
-      "value": "magnet"
+      "type": "local",
+      "value": "assets/icon.png",
+      "fallback": "clipboard-check"
     }
   }
 }

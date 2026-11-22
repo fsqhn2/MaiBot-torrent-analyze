@@ -257,6 +257,7 @@ def bdecode(data: bytes, index: int = 0) -> tuple[Any, int]:
 
     Raises:
         ValueError: 数据不合法时抛出，由调用方降级。
+        RecursionError: 嵌套层数过深时抛出，同样由调用方降级。
     """
 
     if index >= len(data):
@@ -313,7 +314,7 @@ def parse_torrent_meta(blob: bytes, fallback_hash: str) -> dict[str, Any] | None
 
     try:
         root, _ = bdecode(blob)
-    except (ValueError, IndexError):
+    except (ValueError, IndexError, RecursionError):
         return None
     if not isinstance(root, dict):
         return None

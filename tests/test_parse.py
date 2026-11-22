@@ -376,6 +376,8 @@ def test_parse_torrent_meta() -> None:
 
     assert PLUGIN.parse_torrent_meta(b"not-a-torrent", "X") is None
     assert PLUGIN.parse_torrent_meta(b"", "X") is None
+    # 嵌套过深会触发 RecursionError，必须按解析失败降级，不能冒泡给宿主
+    assert PLUGIN.parse_torrent_meta(b"l" * 3000 + b"e" * 3000, "X") is None
 
 
 def _run_all() -> int:
